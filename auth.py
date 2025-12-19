@@ -8,7 +8,7 @@ from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from jose import jwt, JWTError
 import re
-from database import db_dependency
+from dependencies import db_dependency
 
 
 router = APIRouter(
