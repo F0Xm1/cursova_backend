@@ -56,6 +56,31 @@ class Article(Base):
     saved_by = relationship('SavedArticle', back_populates='article', cascade='all, delete-orphan')
 
 
+class SavedArticle(Base):
+    __tablename__ = 'saved_articles'
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    article_id = Column(Integer, ForeignKey('articles.id'), nullable=False)
+    saved_at = Column(DateTime, default=datetime.utcnow)
+
+    user = relationship('Users', backref='saved_articles')
+    article = relationship('Article', back_populates='saved_by')
+
+
+class Subscription(Base):
+    __tablename__ = 'subscriptions'
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    type = Column(String, nullable=False)
+    start_date = Column(DateTime, default=datetime.utcnow)
+    end_date = Column(DateTime, nullable=False)
+    is_active = Column(Boolean, default=True)
+
+    user = relationship('Users', backref='subscriptions')
+
+
 class Poll(Base):
     __tablename__ = 'polls'
 
