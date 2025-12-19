@@ -13,7 +13,7 @@ import profile
 import subscription
 import admin
 from auth import get_user
-from database import db_dependency
+from dependencies import db_dependency
 
 app = FastAPI(title="Медіа-платформа API", version="1.0.0")
 
