@@ -73,6 +73,21 @@ class SavedArticleResponse(BaseModel):
         from_attributes = True
 
 
+class SubscriptionResponse(BaseModel):
+    id: int
+    type: str
+    start_date: datetime
+    end_date: datetime
+    is_active: bool
+
+    class Config:
+        from_attributes = True
+
+
+class SubscriptionBuyRequest(BaseModel):
+    type: str
+
+
 class PollResponse(BaseModel):
     id: int
     question: str
